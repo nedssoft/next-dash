@@ -1,7 +1,7 @@
-import { lusitana } from '@/app/fonts';
 import CustomersTable from '@/app/ui/customers/table';
 import { Metadata } from 'next';
-
+import { Suspense } from 'react';
+import { CustomersTableSkeleton } from '@/app/ui/skeletons';
 export const metadata: Metadata = {
   title: 'Customers',
   description: 'Customers',
@@ -10,7 +10,9 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <div className="w-full">
-      <CustomersTable />
+      <Suspense fallback={<CustomersTableSkeleton />}>
+        <CustomersTable />
+      </Suspense>
     </div>
   )
 }

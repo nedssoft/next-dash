@@ -88,7 +88,7 @@ export async function updateInvoice(
       WHERE id = ${id}
     `;
   } catch (error) {
-    return { message: 'Database Error: Failed to Update Invoice.' };
+    return { message: error instanceof Error ? error.message : 'Database Error: Failed to Update Invoice.' };
   }
  
   revalidatePath('/dashboard/invoices');
